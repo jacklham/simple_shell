@@ -7,7 +7,7 @@
 int main(void);
 int main(void)
 {
-	int ma = 0;
+	int m = 0;
 	char *input_line = NULL;
 	size_t inputbuffsize = 0;
 	size_t byteread = 0;
@@ -21,22 +21,22 @@ int main(void)
 
 		if (interactive != 0)
 			write(1, "$ ", 2);
-		ma = 0;
+		m = 0;
 		byteread = getline(&input_line, &inputbuffsize, stdin);
 		parsedtoken = strtok(input_line, " \n\t\r");
 		while (parsedtoken != NULL)
 		{
-			args[ma] = malloc(sizeof(char) * (strlen(parsedtoken) + 1));
-			strcpy(args[ma], parsedtoken);
-			ma++;
+			args[m] = malloc(sizeof(char) * (strlen(parsedtoken) + 1));
+			strcpy(args[m], parsedtoken);
+			m++;
 			parsedtoken = strtok(NULL, " \n\t\r");
 		}
-		if (ma == 0)
+		if (m == 0)
 		{
 			free(args);
 			continue;
 		}
-		args[ma] = NULL;
+		args[m] = NULL;
 		if (strcmp(args[0], "exit") == 0)
 		{
 			free(args);
