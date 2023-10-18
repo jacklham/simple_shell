@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * main - main function
@@ -12,14 +12,14 @@ int main(void)
 	size_t inputbuffsize = 0;
 	size_t byteread = 0;
 	char *parsedtoken = NULL;
-	int interactive_mode = 1;
+	int interactive = 1;
 	char **args = malloc(10 * sizeof(char *));
 
 	while (1)
 	{
-		interactive_mode = isatty(STDIN_FILENO);
+		interactive = isatty(STDIN_FILENO);
 
-		if (interactive_mode != 0)
+		if (interactive != 0)
 			write(1, "$ ", 2);
 		ma = 0;
 		byteread = getline(&input_line, &inputbuffsize, stdin);
@@ -39,23 +39,23 @@ int main(void)
 		args[ma] = NULL;
 		if (strcmp(args[0], "exit") == 0)
 		{
-			freemem(args);
+			free(args);
 			break;
 		}
 		if (strcmp(args[0], "env") == 0)
 		{
 			env();
-			freemem(args);
+			free(args);
 			continue;
 		}
-		if (interactive_mode == 0)
+		if (interactive == 0)
 			break;
 		_child(args);
 		if (byteread > 1)
 		{
 			if (args[0] != NULL)
 			{
-				freemem(args);
+				free(args);
 			}
 		}
 	}
