@@ -53,9 +53,9 @@ int main(void)
 			/*free(args);*/
 			continue;
 		}
+		_child(args);
 		if (interactive == 0)
 			break;
-		_child(args);
 		if (byteread > 1)
 		{
 			if (args[0] != NULL)
