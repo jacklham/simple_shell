@@ -12,6 +12,6 @@ void env(void)
 	for (ma = 0; environ[ma] != NULL; ma++)
 	{
 		write(1, environ[ma], strlen(environ[ma]));
+		write(1, &newl, 1);
 	}
-	write(1, &newl, 1);
 }
