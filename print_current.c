@@ -39,7 +39,7 @@ int main(void)
 		args[m] = NULL;
 		if (strcmp(args[0], "exit") == 0)
 		{
-			free(args);
+			/*free(args);*/
 			break;
 		}
 		if (strcmp(args[0], "env") == 0)
@@ -55,7 +55,7 @@ int main(void)
 		{
 			if (args[0] != NULL)
 			{
-				free(args);
+				/*free(args);*/
 			}
 		}
 	}
