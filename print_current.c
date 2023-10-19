@@ -33,19 +33,24 @@ int main(void)
 		}
 		if (m == 0)
 		{
-			free(args);
+			/*free(args);*/
 			continue;
 		}
 		args[m] = NULL;
 		if (strcmp(args[0], "exit") == 0)
 		{
-			/*free(args);*/
-			break;
+			free(input_line);
+			input_line = NULL;
+			for (m = 0; args[m]; m++)
+				free(args[m]);
+			free(args);
+			args = NULL;
+			exit(1);
 		}
 		if (strcmp(args[0], "env") == 0)
 		{
 			env();
-			free(args);
+			/*free(args);*/
 			continue;
 		}
 		if (interactive == 0)
